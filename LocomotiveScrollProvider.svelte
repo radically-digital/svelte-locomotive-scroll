@@ -1,4 +1,4 @@
-<script >import { onMount, onDestroy, setContext, getContext } from 'svelte';
+<script >import { onMount, onDestroy, setContext } from 'svelte';
 import imagesLoaded from 'imagesloaded';
 import debounce from 'lodash.debounce';
 //Props
@@ -31,7 +31,7 @@ const locationChange = () => {
         Promise.all([preloadImages((imageTarget = 'img'))]).then(() => {
             scrollInstance.update();
         });
-        // scrollElement.update();
+       
     }
     if (onLocationChange && scrollInstance) {
         onLocationChange(scrollInstance);
@@ -45,14 +45,7 @@ const basicChange = debounce((e) => {
         });
     }
 }, 300);
-// const basicChange = () => {
-// 	// console.log('change');
-// 	if (scrollInstance) {
-// 		Promise.all([preloadImages((imageTarget = 'img'))]).then(() => {
-// 			scrollInstance.update();
-// 		});
-// 	}
-// };
+
 $: watch || w || h, basicChange();
 $: location, locationChange();
 if (!watch) {
